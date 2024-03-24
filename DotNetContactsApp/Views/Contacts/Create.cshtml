@@ -1,0 +1,82 @@
+﻿@model DotNetContactsApp.Models.Contact
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Contact</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!-- regular input fields for the Contact Model -->
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="contactCategory" class="control-label">Category</label>
+                <select id="contactCategory" asp-for="contactCategory" class="form-control" onchange="handleCategoryChange()">
+                    <option>Private</option>
+                    <option>Buisness</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <!-- subcategory for buisness -->
+            <div class="form-group" id="subcategory-buisness-field" style="display:none;">
+                <label asp-for="contactSubcategory" class="control-label">Select Type</label>
+                <select asp-for="contactSubcategory" id="subcategory-select" class="form-control">
+                    <option value="">Select Category</option>
+                    <option>Boss B)</option>
+                    <option>Client</option>
+                    <option>etc</option>
+                </select>
+            </div>
+
+            <!-- subcategory for 'other' -->
+            <div class="form-group" id="subcategory-other-field" style="display:none;">
+                <label asp-for="contactSubcategory" class="control-label">Specify</label>
+                <input asp-for="contactSubcategory" class="form-control" />
+            </div>
+            <!-- only one subcategory is active at a time-->
+
+            <div class="form-group submit-button">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/js/hadleCategoryChange.js"></script>
+}
